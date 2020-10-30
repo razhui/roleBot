@@ -33,7 +33,7 @@ client.once("ready", () => {
 ////////////////MESSAGE CODE/////////////////
 
 client.on('message', message => {
-    //Adds user to role
+    //Assigns user to role
     if (message.content.toLowerCase() === "academy student") {
         let userInput = message.content.toLowerCase();
         let role = message.guild.roles.cache.find(role => role.name.toLowerCase() === userInput);
