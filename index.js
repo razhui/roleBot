@@ -8,6 +8,10 @@ client.once("ready", () => {
     console.log("Ready");
 });
 
+////////////////WEBHOOK CODE/////////////////
+
+const webhook = new Discord.WebhookClient(config.webhook_id, config.webhook_token);
+
 ////////////////MESSAGE CODE/////////////////
 
 client.on("message", message => {
@@ -27,13 +31,31 @@ client.on("message", message => {
             }
         }
     }
+    //EMBED TEXT
+    else if (message.content.toLowerCase() === "welcome") {
+
+        //WEBHOOK CONTENT
+        const embed = new Discord.MessageEmbed()
+            .setTitle("Welcome")
+            .setDescription("To add the Academy Student role, please type academy student")
+            .setColor("#dcd6f7")
+        
+            
+        //WEBHOOK DETAIL AND SEND FUNCTION
+        webhook.send(null, {
+            username: "Mission Desk",
+            avatarURL: "https://cdn.discordapp.com/attachments/342550444947800065/770840177308073994/missionDesk.png",
+            embeds: [embed]
+        });
+    
+    }
 
 });
 
 client.login(config.token);
 
-//1.(DONE) Bot can send webhook) Bot will display welcome webook w/ information regarding how to select a role
-//2.(DONE) functionality is to listen) Bot will listen for "role" user types
+//1.(DONE) Bot can send webhook Bot will display welcome webook w/ information regarding how to select a role
+//2.(DONE) functionality is to listen Bot will listen for "role" user types
 //3.(DONE) Bot will assign role that user types
 //4.(DONE) Delete user message
 //  a. delete bot message
