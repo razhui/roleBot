@@ -1,6 +1,6 @@
 # roleBot
 
-A Discord bot that can assign roles to a user via message command.
+Implements a discord package (discord.js) for matching incoming requests to respective handlers. Provides server owner with an easy way to assign roles and privilege's to end users in their community.
 
 # Functions
 
