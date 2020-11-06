@@ -16,19 +16,21 @@ const webhook = new Discord.WebhookClient(config.webhook_id, config.webhook_toke
 
 client.on("message", message => {
     //Assigns user to role, shortly deletes message after
-    if (message.content.toLowerCase() === "academy student") {
+    if (message.content.toLowerCase() === "placeholder role") {
 
         let userInput = message.content.toLowerCase();
         let role = message.guild.roles.cache.find(role => role.name.toLowerCase() === userInput);
         if (role) {
             if (message.member.roles.cache.has(role.id)) {
-                message.reply("You are already in the academy.").then(message => {message.delete({timeout: 5000})})
+                message.reply("You are already in the Placeholder role.").then(message => {message.delete({timeout: 5000})})
                 message.delete({timeout: 5000});
             } else {
                 message.member.roles.add(role)
-                message.reply("Welcome to the Academy").then(message => {message.delete({timeout: 5000})});
+                message.reply("Welcome to the Placeholder role!").then(message => {message.delete({timeout: 5000})});
                 message.delete({timeout: 5000});
             }
+        } else {
+            console.log(err);
         }
     }
     //EMBED TEXT
@@ -37,13 +39,13 @@ client.on("message", message => {
         //WEBHOOK CONTENT
         const embed = new Discord.MessageEmbed()
             .setTitle("Welcome")
-            .setDescription("To add the Academy Student role, please type academy student")
+            .setDescription("To add the Placeholder role, please type Placeholder")
             .setColor("#dcd6f7")
         
             
         //WEBHOOK DETAIL AND SEND FUNCTION
         webhook.send(null, {
-            username: "Mission Desk",
+            username: "roleBot",
             avatarURL: "https://cdn.discordapp.com/attachments/342550444947800065/770840177308073994/missionDesk.png",
             embeds: [embed]
         });
